@@ -5,5 +5,5 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://localhost:3000',
-  allowedDomains: ['localhost:3000', 'nestjs-tasks-backend.herokuapp.com'],
+  allowedDomains: ['localhost:3000', 'http://localhost:3000'],
 };

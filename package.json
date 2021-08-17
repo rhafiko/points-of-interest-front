@@ -6,11 +6,11 @@
     "start": "node server.js",
     "start:dev": "ng serve",
     "start:prod": "ng serve --configuration=prod ",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --aot --prod"
+    "postinstall": "ng build --configuration=prod"
   },
   "private": true,
   "dependencies": {

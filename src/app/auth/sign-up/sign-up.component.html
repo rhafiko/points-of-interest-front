@@ -1,0 +1,60 @@
+<div class="fullscreen-wrapper">
+  <p-card header="Points of Interest - Join Us " styleClass="p-card-shadow">
+    <div class="logo">
+      <img src="assets/images/main-icon.png" alt="Point of Interest logo" />
+    </div>
+    <div class="messaages success" *ngIf="signUpDone">
+      <ul>
+        <li>User created successfully !</li>
+        <li>Proceed to Sign In !</li>
+      </ul>
+    </div>
+
+    <div class="messaages errors" *ngIf="errorMessage.length > 0">
+      <ul *ngFor="let error of errorMessage">
+        <li>{{ error }}</li>
+      </ul>
+    </div>
+    <form [formGroup]="formLogin" (ngSubmit)="signUp()">
+      <div>
+        <span class="p-float-label">
+          <input id="username" formControlName="username" type="text" pInputText />
+          <label for="username">Username</label>
+        </span>
+      </div>
+      <div>
+        <p-password
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          [(ngModel)]="password"
+          [toggleMask]="true"
+          formControlName="password"
+          placeholder="Password"
+        >
+          <ng-template pTemplate="header">
+            <h6>Pick a password</h6>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <p-divider></p-divider>
+            <p class="p-mt-2">Suggestions</p>
+            <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+              <li>At least one lowercase</li>
+              <li>At least one uppercase</li>
+              <li>At least one numeric</li>
+              <li>Minimum 8 characters</li>
+            </ul>
+          </ng-template>
+        </p-password>
+      </div>
+      <div style="padding-top: 10px">
+        <p-button type="submit" styleClass="p-button-lg" label="SIGN UP"></p-button>
+        <span>&nbsp;</span>
+        <p-button
+          (click)="goToSignIn()"
+          styleClass="p-button-lg p-button-warning"
+          label="Have an account ? SIGN IN  "
+        ></p-button>
+      </div>
+    </form>
+  </p-card>
+</div>

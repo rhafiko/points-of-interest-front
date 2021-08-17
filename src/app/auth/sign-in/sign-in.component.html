@@ -1,0 +1,42 @@
+<div class="fullscreen-wrapper">
+  <p-card header="Points of Interest - Sign In " styleClass="p-card-shadow">
+    <div class="logo">
+      <img src="assets/images/main-icon.png" alt="Point of Interest logo" />
+    </div>
+    <p>Fill in your username and password to sign in.</p>
+    <div class="errors" *ngIf="errorMessage.length > 0">
+      <ul *ngFor="let error of errorMessage">
+        <li>{{ error }}</li>
+      </ul>
+    </div>
+    <form [formGroup]="formLogin" (ngSubmit)="signIn()">
+      <div>
+        <span class="p-float-label">
+          <input id="username" formControlName="username" type="text" pInputText />
+          <label for="username">Username</label>
+        </span>
+      </div>
+
+      <div>
+        <p-password
+          [style]="{ width: '100%' }"
+          [inputStyle]="{ width: '100%' }"
+          [(ngModel)]="password"
+          [toggleMask]="true"
+          placeholder="Password"
+          formControlName="password"
+        ></p-password>
+      </div>
+
+      <div style="padding-top: 10px">
+        <p-button type="submit" styleClass="p-button-lg" label="SIGN IN"></p-button>
+        <span>&nbsp;</span>
+        <p-button
+          (click)="goToSignUp()"
+          styleClass="p-button-lg p-button-warning"
+          label="Don't have an account ? SIGN UP  "
+        ></p-button>
+      </div>
+    </form>
+  </p-card>
+</div>

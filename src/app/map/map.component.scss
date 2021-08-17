@@ -1,0 +1,78 @@
+p-card {
+  max-width: 480px;
+  width: 100%;
+}
+
+.errors {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: rgb(247, 197, 192);
+  color: rgb(165, 24, 9);
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.input-point-name {
+  .point-name {
+    width: 100%;
+    min-height: 50px;
+    margin-bottom: 10px;
+  }
+}
+
+.action-button {
+  padding-top: 10px;
+}
+
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .map-frame {
+    border: 2px solid black;
+    height: 100%;
+
+    #map {
+      height: 100%;
+    }
+  }
+}
+
+.get-my-location {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 999;
+}
+
+.p-dialog-header {
+  padding: 10px !important;
+}
+
+.brand {
+  text-align: center;
+  border-color: black;
+  border-width: 2px;
+  position: fixed;
+  bottom: 20px;
+  cursor: pointer;
+  z-index: 999;
+  background-color: #ffffff73;
+  border-radius: 10px;
+  padding: 10px;
+  span {
+    font-size: 16px;
+    font-weight: 900;
+    color: #333333bd;
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,43 @@
+.fullscreen-wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p-card {
+    max-width: 480px;
+    width: 100%;
+    border: 2px dashed #33333342;
+  }
+
+  .logo {
+    text-align: center;
+  }
+
+  .p-inputtext {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .p-password {
+    width: 100%;
+  }
+
+  .messaages {
+    width: 100%;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  }
+
+  .errors {
+    background-color: rgb(247, 197, 192);
+    color: rgb(165, 24, 9);
+  }
+
+  .success {
+    background-color: #689f38;
+    color: #ffffff;
+  }
+}

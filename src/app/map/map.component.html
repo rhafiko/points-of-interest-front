@@ -1,0 +1,61 @@
+<app-avatar></app-avatar>
+
+<div class="map-container">
+  <div class="map-frame">
+    <div id="map"></div>
+  </div>
+</div>
+<p-dialog
+  header="Point of Interest"
+  [(visible)]="displayMaintainPointDialog"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '30vw' }"
+>
+  <p>Name your point.</p>
+  <div class="errors" *ngIf="errorMessage.length > 0">
+    <ul *ngFor="let error of errorMessage">
+      <li>{{ error }}</li>
+    </ul>
+  </div>
+  <form [formGroup]="formLocation" (ngSubmit)="maintainPoint()">
+    <div class="input-point-name">
+      <span class="p-float-label">
+        <input
+          class="point-name"
+          id="pointName"
+          formControlName="pointName"
+          maxlength="80"
+          type="text"
+          pInputText
+          [(ngModel)]="point.title"
+        />
+        <label for="pointName">Point Name</label>
+      </span>
+    </div>
+
+    <div class="action-button">
+      <p-button type="submit" styleClass="p-button-lg" [label]="point.id ? 'Save' : 'Create'"></p-button>
+      <span>&nbsp;</span>
+    </div>
+  </form>
+</p-dialog>
+
+<p-dialog
+  header="Point of Interest - Share"
+  [(visible)]="displaySharePointDialog"
+  [breakpoints]="{ '960px': '75vw' }"
+  [style]="{ width: '30vw' }"
+>
+  <p>
+    Share your point <b>{{ urlToShare?.title }}</b> using one of the available options below.
+  </p>
+
+  <share-buttons [show]="11" [url]="urlToShare?.url" [autoSetMeta]="false"></share-buttons>
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
+
+<p-toast position="top-center"></p-toast>
+
+<img (click)="getMyLocation()" class="get-my-location" title="Get your location" src="assets/images/get-location.png" />
+<div class="brand"><span>Points of Interest</span></div>

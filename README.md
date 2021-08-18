@@ -13,6 +13,12 @@ Users need to create an account and sign in to have access to the map and start 
 - In order to support the load and concurrent users, it may be necessary to review the database connection pool.
 - The app is mobile-friendly but, needs some enhancements, like the use of device GPS to trace routes, receive push notifications when a new place is shared. As it isn't a native/hybrid solution, have some limitations about hardware features access.
 
+### See it running at Heroku
+
+- [Points Of Interest](https://points-of-interest-frontend.herokuapp.com)
+- https://points-of-interest-frontend.herokuapp.com
+
+
 ## Installation
 
 ```bash

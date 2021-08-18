@@ -54,4 +54,4 @@ Then navigate to `http://localhost:4200/`
 11. Config users profile to add photo
 12. Option on users profile to make all places as public/private by default
 13. User full name and email
-14. Password recover option
+14. Password change/recover option

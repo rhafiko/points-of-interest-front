@@ -8,27 +8,21 @@ This is the App `Points of Interest` which allows users to mark/edit their point
 
 Users need to create an account and sign in to have access to the map and start to do mark Points of Interest.
 
-**About Limitations** and what changes would need to be considered to scale to 100, 1 000, and 100 000 concurrent users:
-- As the solution uses JWT tokens, it is ready for scale as microservice. 
-- In order to support the load and concurrent users, it may be necessary to review the database connection pool.
-- The app is mobile-friendly but, needs some enhancements, like the use of device GPS to trace routes, receive push notifications when a new place is shared. As it isn't a native/hybrid solution, have some limitations about hardware features access.
-
 ### See it running at Heroku
 
 - [Points Of Interest](https://points-of-interest-frontend.herokuapp.com)
 - https://points-of-interest-frontend.herokuapp.com
 
-
 ## Installation
 
 ```bash
 $ npm install
-
 ```
 
 ## Running the app
+
 ```bash
-Run `npm run start:dev` for a dev server consuming the remote API running locally. 
+Run `npm run start:dev` for a dev server consuming the API running locally.
 src/environment
   environment.ts
 

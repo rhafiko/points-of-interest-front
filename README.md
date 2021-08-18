@@ -2,26 +2,48 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is App, `Points of Interest`, allows users to mark/edit their points of interest on a map. Users can use the app to share their Points of Interest with each other.
 
-## Code scaffolding
+Users need to create an account and sign in to have access to the map and start to do mark Points of Interest.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**About Limitations** and what changes would need to be considered to scale to 100, 1 000, and 100 000 concurrent users:
+- As the solution uses JWT tokens, it is ready for scale as microservice. 
+- In order to support the load and concurrent users, it may be necessary to review the database connection pool.
+- The app is mobile-friendly but, needs some enhancements, like the use of device GPS to trace routes, receive push notifications when a new place is shared. As it isn't a native/hybrid solution, have some limitations about hardware features access.
 
-## Build
+## Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```bash
+$ npm install
 
-## Running unit tests
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running the app
+```bash
+Run `npm run start:dev` for a dev server consuming the remote API running locally. 
+src/environment
+  environment.ts
 
-## Running end-to-end tests
+Run `ng run start:prod` for a dev server consuming the remote API on Heroku.
+src/environment
+  environment.prod.ts
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Then navigate to `http://localhost:4200/`
 
-## Further help
+## Next Features
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Rate the locals using stars. For rates from 1 to 2 stars force comment.
+2. Add comments and photos, allowing users to share their impressions about it.
+3. Show top-rated places near my location, with the option to sort by most recent, top-rated, etc.
+4. Share local and Allow other users to view it by using of @userName
+5. Change local visibility by toggle public/private or shared, viewing its attributes as owner, rate, and users comments.
+6. Bookmark local as preferred and provide quick access to these lists
+7. Search places by a distance range
+8. Group places when zoomed out.
+9. Add tags/categories of places like “next travel, stay away, cozy, etc”
+10. Trace a new route to the select place
+11. Config users profile to add photo
+12. Option on users profile to make all places as public/private by default

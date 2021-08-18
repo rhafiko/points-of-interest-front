@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Description
 
-This is App, `Points of Interest`, allows users to mark/edit their points of interest on a map. Users can use the app to share their Points of Interest with each other.
+This is the App `Points of Interest` which allows users to mark/edit their points of interest on a map. Users can use the app to share their Points of Interest with each other.
 
 Users need to create an account and sign in to have access to the map and start to do mark Points of Interest.
 

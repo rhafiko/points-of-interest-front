@@ -17,7 +17,6 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { PasswordModule } from 'primeng/password';
-import { DividerModule } from 'primeng/divider';
 import { DialogModule } from 'primeng/dialog';
 
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -47,7 +46,6 @@ export function jwtOptionsFactory(storage) {
     InputTextModule,
     ButtonModule,
     PasswordModule,
-    DividerModule,
     MapModule,
     LeafletModule,
 

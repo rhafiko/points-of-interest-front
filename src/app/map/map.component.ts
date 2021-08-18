@@ -141,8 +141,6 @@ export class MapComponent implements OnInit {
     marker.title = point.title;
     marker.id = point.id;
 
-    console.log('addNewPointToMap');
-
     let btnEdit = this.helperService.getEditButton(this.onClickEditPoint.bind(this, marker));
     let btnShare = this.helperService.getShareButton(this.onClickSharePoint.bind(this, marker));
     let btnRemove = this.helperService.getRemoveButton(this.onClickRemovePoint.bind(this, marker, map));
@@ -174,11 +172,9 @@ export class MapComponent implements OnInit {
   }
 
   private onClickEditPoint(marker) {
-    console.log('Edit Point', marker);
     if (marker.id.length > 0) {
       this.getPointById(marker.id).then((point) => {
         this.point = point;
-        console.log('retrieved point by id', point);
         this.markerForUpdate = marker;
         this.showEditPointDialog();
       });
@@ -202,7 +198,6 @@ export class MapComponent implements OnInit {
   private updatePoint(): Promise<boolean> {
     return new Promise((resolve) => {
       this.mapService.updatePoint(this.point.id, this.point.title).then((data) => {
-        console.log('retorno', data);
         this.displayMaintainPointDialog = false;
 
         this.map.removeLayer(this.markerForUpdate);
@@ -222,7 +217,6 @@ export class MapComponent implements OnInit {
   private createPoint(): Promise<boolean> {
     return new Promise((resolve) => {
       this.mapService.createPoint(this.point.lat, this.point.lng, this.point.title).then((data) => {
-        console.log('retorno', data);
         let newMapPoint = new Point(this.point.lat, this.point.lng, this.point.title, data.id);
         this.addNewPointToMap(this.map, newMapPoint);
         this.displayMaintainPointDialog = false;

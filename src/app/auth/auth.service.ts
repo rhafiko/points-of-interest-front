@@ -26,7 +26,7 @@ export class AuthService {
   public signUp(username: string, password: string): Observable<string> {
     return this.http.post<string>(`${this.baseUrl}/auth/signup`, { username, password }).pipe(
       tap((ret) => {
-        console.log('signup', ret);
+        console.log('signup okay', ret);
       }),
       catchError((error) => throwError(error))
     );
@@ -35,7 +35,6 @@ export class AuthService {
   public signIn(username: string, password: string): Observable<any> {
     return this.http.post<string>(`${this.baseUrl}/auth/signin`, { username, password }).pipe(
       tap((token: any) => {
-        console.log('signin', token.accessToken);
         this.username = this.jwtHelper.decodeToken(token.accessToken).username;
         this.saveToken(token);
       }),
@@ -51,13 +50,11 @@ export class AuthService {
   }
 
   public saveToken(token: any) {
-    console.log('saveToken', token.accessToken);
     localStorage.setItem('point_jwt_token', token.accessToken);
   }
 
   public getToken(): string {
     let token = localStorage.getItem('point_jwt_token');
-    console.log('get token', token);
     return token;
   }
 

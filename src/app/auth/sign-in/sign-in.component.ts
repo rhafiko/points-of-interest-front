@@ -41,7 +41,7 @@ export class SignInComponent implements OnInit {
 
     if (this.formLogin.valid) {
       this.auth.signIn(this.formLogin.controls['username'].value, this.formLogin.controls['password'].value).subscribe(
-        (data) => {
+        () => {
           if (this.redirectURL) {
             this.router.navigateByUrl(this.redirectURL).catch(() => this.router.navigate(['map']));
           } else {

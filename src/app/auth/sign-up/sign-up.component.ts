@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit {
     this.signUpDone = false;
 
     if (this.formLogin.valid) {
-      this.auth.signUp(this.formLogin.controls['username'].value, this.formLogin.controls['password'].value).subscribe(
+      this.auth.signUp(this.formLogin.controls['username'].value, this.formLogin.controls['password'].value).then(
         () => {
           this.signUpDone = true;
           this.resetForm();

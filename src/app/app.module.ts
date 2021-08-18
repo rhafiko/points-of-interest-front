@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +22,8 @@ import { DialogModule } from 'primeng/dialog';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 export function jwtOptionsFactory(storage) {
   return {
@@ -48,6 +50,7 @@ export function jwtOptionsFactory(storage) {
     PasswordModule,
     MapModule,
     LeafletModule,
+    NgxSpinnerModule,
 
     JwtModule.forRoot({
       jwtOptionsProvider: {
@@ -56,6 +59,7 @@ export function jwtOptionsFactory(storage) {
       },
     }),
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [MessageService, ConfirmationService],
   bootstrap: [AppComponent],
 })

@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit {
     this.errorMessage = [];
 
     if (this.formLogin.valid) {
-      this.auth.signIn(this.formLogin.controls['username'].value, this.formLogin.controls['password'].value).subscribe(
+      this.auth.signIn(this.formLogin.controls['username'].value, this.formLogin.controls['password'].value).then(
         () => {
           if (this.redirectURL) {
             this.router.navigateByUrl(this.redirectURL).catch(() => this.router.navigate(['map']));

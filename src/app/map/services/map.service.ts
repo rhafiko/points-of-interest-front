@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   providedIn: 'root',
 })
 export class MapService {
-  private baseUrl = environment.apiEndpoint;
+  public baseUrl = environment.apiEndpoint;
 
   constructor(private http: HttpClient, private messageService: MessageService, private spinner: NgxSpinnerService) {}
 

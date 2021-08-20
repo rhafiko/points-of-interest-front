@@ -80,8 +80,8 @@ export class MapComponent implements OnInit {
 
   private initMap(): void {
     this.map = Leaflet.map('map', {
-      center: [45.344062150180534, -72.51628875732423],
-      zoom: 15,
+      center: [43.464569350207285, -80.52240371704103],
+      zoom: 14,
     });
 
     this.map.on('click', (event) => {

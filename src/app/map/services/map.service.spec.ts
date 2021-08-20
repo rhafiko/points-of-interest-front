@@ -1,7 +1,7 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MapService } from './map.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'primeng/api';
 
@@ -30,6 +30,13 @@ describe('MapService', () => {
       title: 'Mock Place 03',
     },
   ];
+
+  const mockNewPoint = {
+    id: 'bd9086de-65ff-4ecf-a015-26f52637aebb',
+    lat: '-25.489614314365355',
+    lng: '-49.26093578338623',
+    title: 'Mock Place 01',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -72,6 +79,34 @@ describe('MapService', () => {
       const req = httpMock.expectOne(`${service.baseUrl}/points/${id}`);
       expect(req.request.method).toBe('GET');
       req.flush(mockPoints[1]);
+    });
+  });
+
+  describe('ceatePoint', () => {
+    it('should create a new point', () => {
+      service.createPoint(mockNewPoint.lat, mockNewPoint.lng, mockNewPoint.title).then((newPoint) => {
+        expect(newPoint.id).toBeDefined();
+      });
+
+      const req = httpMock.expectOne(`${service.baseUrl}/points`);
+      expect(req.request.method).toBe('POST');
+      req.flush(mockNewPoint);
+    });
+
+    it('it should give an error if create point fails', () => {
+      service.createPoint(mockNewPoint.lat, mockNewPoint.lng, mockNewPoint.title).then(
+        () => fail('the save point operation should have failed'),
+        (error: HttpErrorResponse) => {
+          expect(error.status).toBe(500);
+        }
+      );
+
+      const req = httpMock.expectOne(`${service.baseUrl}/points`);
+      expect(req.request.method).toEqual('POST');
+      req.flush('Create point failed', {
+        status: 500,
+        statusText: 'Internal Server Error',
+      });
     });
   });
 });

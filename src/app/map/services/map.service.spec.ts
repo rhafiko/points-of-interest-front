@@ -9,6 +9,7 @@ describe('MapService', () => {
   let service: MapService;
   let injector: TestBed;
   let httpMock: HttpTestingController;
+  let ngxSpinnerServiceSpy: NgxSpinnerService;
 
   const mockPoints = [
     {
@@ -39,13 +40,19 @@ describe('MapService', () => {
   };
 
   beforeEach(() => {
+    ngxSpinnerServiceSpy = jasmine.createSpyObj('NgxSpinnerService', ['show', 'hide']);
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [MapService, HttpClient, NgxSpinnerService, MessageService],
+      providers: [
+        MapService,
+        HttpClient,
+        { provide: NgxSpinnerService, useValue: ngxSpinnerServiceSpy },
+        MessageService,
+      ],
     });
     service = TestBed.inject(MapService);
     injector = getTestBed();
-    httpMock = injector.get(HttpTestingController);
+    httpMock = injector.inject(HttpTestingController);
   });
 
   afterEach(() => {
@@ -58,12 +65,13 @@ describe('MapService', () => {
 
   describe('getPoints', () => {
     it('should return a list of Points', () => {
-      service.getPoints().then((points) => {
+      let searchCriteria = '';
+      service.getPoints(searchCriteria).then((points) => {
         expect(points.length).toBe(3);
         expect(points).toEqual(mockPoints);
       });
 
-      const req = httpMock.expectOne(`${service.baseUrl}/points`);
+      const req = httpMock.expectOne(`${service.baseUrl}/points?search=${searchCriteria}`);
       expect(req.request.method).toBe('GET');
       req.flush(mockPoints);
     });

@@ -78,25 +78,29 @@ export class MapService {
     });
   }
 
-  public getPoints(): Promise<any> {
+  public getPoints(searchCriteria: string = ''): Promise<any> {
     return new Promise((resolve) => {
       this.spinner.show();
-      this.http.get<Point[]>(`${this.baseUrl}/points`).subscribe(
-        (res: any) => {
-          this.spinner.hide();
-          resolve(res);
-        },
-        (error) => {
-          this.spinner.hide();
-          console.log(error);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Retrieving Points',
-            life: 6000,
-            detail: `Error retrieving points:\n ${error.error.message}`,
-          });
-        }
-      );
+      this.http
+        .get<Point[]>(`${this.baseUrl}/points`, {
+          params: { search: searchCriteria },
+        })
+        .subscribe(
+          (res: any) => {
+            this.spinner.hide();
+            resolve(res);
+          },
+          (error) => {
+            this.spinner.hide();
+            console.log(error);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Retrieving Points',
+              life: 6000,
+              detail: `Error retrieving points:\n ${error.error.message}`,
+            });
+          }
+        );
     });
   }
 

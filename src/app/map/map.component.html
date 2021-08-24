@@ -59,3 +59,22 @@
 
 <img (click)="getMyLocation()" class="get-my-location" title="Get your location" src="assets/images/get-location.png" />
 <div class="brand"><span>Points of Interest</span></div>
+
+<div class="p-grid">
+  <div class="p-col-12 search-input">
+    <div [formGroup]="formSearchPoint">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          type="text"
+          debounce="1500"
+          formControlName="searchCriteria"
+          (keydown.enter)="searchPoints($event)"
+          pInputText
+          placeholder="Search"
+          [(ngModel)]="searchCriteria"
+        />
+      </span>
+    </div>
+  </div>
+</div>

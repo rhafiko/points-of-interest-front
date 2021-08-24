@@ -54,10 +54,6 @@ p-card {
   z-index: 999;
 }
 
-.p-dialog-header {
-  padding: 10px !important;
-}
-
 .brand {
   text-align: center;
   border-color: black;
@@ -75,4 +71,12 @@ p-card {
     color: #333333bd;
     margin-top: 10px;
   }
+}
+
+.search-input {
+  text-align: center;
+  position: relative;
+  top: 20px;
+  z-index: 999;
+  padding: 10px;
 }

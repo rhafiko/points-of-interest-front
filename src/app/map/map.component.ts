@@ -38,10 +38,12 @@ export class MapComponent implements OnInit {
   public displaySharePointDialog: boolean = false;
   public urlToShare: any;
   public formLocation: FormGroup;
+  public formSearchPoint: FormGroup;
   public errorMessage = [];
   public point: Point;
   public markerForUpdate;
   public markerCurrentLocation;
+  public searchCriteria;
 
   constructor(
     private mapService: MapService,
@@ -55,6 +57,10 @@ export class MapComponent implements OnInit {
     this.point = new Point();
     this.formLocation = this.formBuilder.group({
       pointName: [this.point?.title, [Validators.required, Validators.minLength(4), Validators.maxLength(80)]],
+    });
+
+    this.formSearchPoint = this.formBuilder.group({
+      searchCriteria: [this.searchCriteria, [Validators.minLength(4), Validators.maxLength(80)]],
     });
   }
 
@@ -238,12 +244,31 @@ export class MapComponent implements OnInit {
     });
   }
 
+  searchPoints(ev: any) {
+    this.map.off();
+    this.map.remove();
+    this.initMap();
+    this.getMyLocation();
+    this.getAllPoints();
+  }
+
   private getAllPoints() {
-    this.mapService.getPoints().then((points) => {
+    this.mapService.getPoints(this.searchCriteria).then((points) => {
       points.map((point) => {
         let newMapPoint = new Point(point.lat, point.lng, point.title, point.id);
         this.addNewPointToMap(this.map, newMapPoint);
+        if (this.searchCriteria) {
+          const currentLocation = { lat: point.lat, lng: point.lng };
+          this.moveCamera(currentLocation);
+        }
       });
+      if (points.length == 0 && this.searchCriteria) {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Search',
+          detail: `No results found for the given Criteria: "${this.searchCriteria}"`,
+        });
+      }
     });
   }
 }
